@@ -1,0 +1,29 @@
+{
+  "name": "@sheila/visa-rules",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "main": "dist/visas.js",
+  "types": "dist/visas.d.ts",
+  "exports": {
+    "./visas": {
+      "import": "./dist/visas.js",
+      "types": "./dist/visas.d.ts"
+    },
+    "./scoring": {
+      "import": "./dist/scoring.js",
+      "types": "./dist/scoring.d.ts"
+    },
+    "./checklist": {
+      "import": "./dist/checklist.js",
+      "types": "./dist/checklist.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "@sheila/shared": "*"
+  }
+}

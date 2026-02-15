@@ -1,0 +1,17 @@
+{
+  "name": "sheila",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "dev:api": "npm run dev --workspace=apps/api",
+    "dev:worker": "npm run dev --workspace=apps/worker",
+    "lint": "echo 'no linter configured yet'"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
