@@ -3,8 +3,8 @@
 import { useState, useCallback } from "react";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { Separator } from "@/components/ui/separator";
 import { api } from "@/lib/api";
 import type { Case, CaseWithCounts } from "@/lib/types";
 import { CaseStatusBadge } from "./status-badge";
@@ -33,7 +33,7 @@ export function CaseDetail({ initialCase }: { initialCase: Case }) {
       <div>
         <Link
           href="/"
-          className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground"
+          className="inline-flex items-center text-sm text-muted-foreground transition-colors hover:text-primary"
         >
           <ArrowLeft className="mr-1 h-4 w-4" />
           Back to cases
@@ -49,35 +49,40 @@ export function CaseDetail({ initialCase }: { initialCase: Case }) {
         <CaseStatusBadge status={caseData.status} />
       </div>
 
-      <Progress value={caseData.progress_percent} className="h-2" />
+      <Progress value={caseData.progress_percent} className="h-3" />
 
-      <Separator />
-
-      <QuizSection
-        caseId={caseData.id}
-        readOnly={!isDraft}
-        onComplete={refreshCase}
-      />
+      <Card>
+        <CardContent className="p-6">
+          <QuizSection
+            caseId={caseData.id}
+            readOnly={!isDraft}
+            onComplete={refreshCase}
+          />
+        </CardContent>
+      </Card>
 
       {hasVisa && (
-        <>
-          <Separator />
-          <ChecklistSection caseId={caseData.id} />
-        </>
+        <Card>
+          <CardContent className="p-6">
+            <ChecklistSection caseId={caseData.id} />
+          </CardContent>
+        </Card>
       )}
 
       {hasVisa && (
-        <>
-          <Separator />
-          <FlagsSection caseId={caseData.id} />
-        </>
+        <Card>
+          <CardContent className="p-6">
+            <FlagsSection caseId={caseData.id} />
+          </CardContent>
+        </Card>
       )}
 
       {hasVisa && !isDraft && (
-        <>
-          <Separator />
-          <ExportSection caseId={caseData.id} />
-        </>
+        <Card>
+          <CardContent className="p-6">
+            <ExportSection caseId={caseData.id} />
+          </CardContent>
+        </Card>
       )}
     </div>
   );

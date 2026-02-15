@@ -1,38 +1,41 @@
 import { Badge } from "@/components/ui/badge";
 import type { CaseStatus, FlagSeverity, UploadStatus } from "@/lib/types";
 
-const caseStatusVariant: Record<CaseStatus, "default" | "secondary" | "destructive" | "outline"> = {
-  Draft: "secondary",
-  InProgress: "default",
-  ActionRequired: "destructive",
-  ReadyForReview: "outline",
-  ReadyForExport: "outline",
-  Exported: "secondary",
+const caseStatusConfig: Record<CaseStatus, { variant: "default" | "secondary" | "destructive" | "outline"; className?: string }> = {
+  Draft: { variant: "secondary" },
+  InProgress: { variant: "default" },
+  ActionRequired: { variant: "destructive" },
+  ReadyForReview: { variant: "outline", className: "border-primary/40 text-primary" },
+  ReadyForExport: { variant: "outline", className: "border-primary/40 text-primary" },
+  Exported: { variant: "secondary" },
 };
 
-const severityVariant: Record<FlagSeverity, "default" | "secondary" | "destructive" | "outline"> = {
-  Verified: "default",
-  Review: "outline",
-  PotentialBlocker: "destructive",
+const severityConfig: Record<FlagSeverity, { variant: "default" | "secondary" | "destructive" | "outline"; className?: string }> = {
+  Verified: { variant: "default" },
+  Review: { variant: "outline", className: "border-primary/40 text-primary" },
+  PotentialBlocker: { variant: "destructive" },
 };
 
-const uploadVariant: Record<UploadStatus, "default" | "secondary" | "destructive" | "outline"> = {
-  Missing: "secondary",
-  Uploaded: "default",
-  Flagged: "destructive",
-  Verified: "outline",
+const uploadConfig: Record<UploadStatus, { variant: "default" | "secondary" | "destructive" | "outline"; className?: string }> = {
+  Missing: { variant: "secondary" },
+  Uploaded: { variant: "default" },
+  Flagged: { variant: "destructive" },
+  Verified: { variant: "outline", className: "border-primary/40 text-primary" },
 };
 
 export function CaseStatusBadge({ status }: { status: CaseStatus }) {
   const label = status.replace(/([a-z])([A-Z])/g, "$1 $2");
-  return <Badge variant={caseStatusVariant[status]}>{label}</Badge>;
+  const config = caseStatusConfig[status];
+  return <Badge variant={config.variant} className={config.className}>{label}</Badge>;
 }
 
 export function SeverityBadge({ severity }: { severity: FlagSeverity }) {
   const label = severity === "PotentialBlocker" ? "Potential Blocker" : severity;
-  return <Badge variant={severityVariant[severity]}>{label}</Badge>;
+  const config = severityConfig[severity];
+  return <Badge variant={config.variant} className={config.className}>{label}</Badge>;
 }
 
 export function UploadStatusBadge({ status }: { status: UploadStatus }) {
-  return <Badge variant={uploadVariant[status]}>{status}</Badge>;
+  const config = uploadConfig[status];
+  return <Badge variant={config.variant} className={config.className}>{status}</Badge>;
 }
