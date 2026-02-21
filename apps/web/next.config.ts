@@ -2,6 +2,17 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: "standalone",
+  env: {
+    NEXT_PUBLIC_SUPABASE_URL:
+      process.env.NEXT_PUBLIC_SUPABASE_URL ||
+      "https://tkfglcjapipgtdforamu.supabase.co",
+    NEXT_PUBLIC_SUPABASE_ANON_KEY:
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRrZmdsY2phcGlwZ3RkZm9yYW11Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA5OTQzNjAsImV4cCI6MjA4NjU3MDM2MH0.q7uQpNqzNkcLwyV1PiwiBqkDWN8VuX8qkUddrZ-lR20",
+    NEXT_PUBLIC_API_URL:
+      process.env.NEXT_PUBLIC_API_URL ||
+      "https://api-production-273d.up.railway.app",
+  },
 };
 
 export default nextConfig;
