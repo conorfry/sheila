@@ -5,7 +5,7 @@
     "buildCommand": "npm run build"
   },
   "deploy": {
-    "startCommand": "node apps/web/.next/standalone/server.js",
+    "startCommand": "node apps/web/.next/standalone/apps/web/server.js",
     "healthcheckPath": "/",
     "restartPolicyType": "ON_FAILURE"
   }
