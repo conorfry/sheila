@@ -9,7 +9,11 @@
     "build": "npm run build --workspaces",
     "dev:api": "npm run dev --workspace=apps/api",
     "dev:worker": "npm run dev --workspace=apps/worker",
-    "lint": "echo 'no linter configured yet'"
+    "lint": "echo 'no linter configured yet'",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "vitest": "^3.0.0"
   },
   "engines": {
     "node": ">=20"
